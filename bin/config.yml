@@ -1,0 +1,36 @@
+#        ##################################
+#        ## Configuration for PvP Health ##
+#        ##################################
+
+useNumericalDisplay: false
+# useNumericalDisplay: Option to use Numerical Display between 2 types of display.
+#
+#    ######################
+#    #  Types of display  #
+#    ######################
+#    #  Numerical Display #
+#    #     [ x / 20 ]     #
+#    ######################
+#    #    Icon Display    #
+#    #   ❤❤❤❤♥♡♡♡♡♡  #
+#    #      ( 4.5 )       #
+#    ######################
+
+hitString: $b%VICTIM%$c's health %COLON% $6%VICTIM-HEALTH%
+# hitString: The string displayed when the PvP occurred.
+#
+#    ###################################################
+#    #                      Tools                      #
+#    ###################################################
+#    # %COLON% -> :                                    #
+#    # $<colour number> - Colour                       #
+#    # %VICTIM% - The name of the victim               #
+#    # %VICTIM-HEALTH% - The health of the victim      #
+#    # %ATTACKER% - The name of the attacker           #
+#    # %DAMAGE-DONE% - The damage done by the attacker #
+#    ###################################################
+
+preventSpamTime: 2
+# preventSpamTime: The time in seconds before another information is sent to the attacker again.
+#
+# NOTE: Attacks higher than 6 (3 hearts) and victim's health lower than 4 (2 hearts), will bypass this time.
