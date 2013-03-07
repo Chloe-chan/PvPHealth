@@ -4,7 +4,6 @@ import org.bukkit.ChatColor;
 
 public enum Messages
 {
-	invalidmessage(ChatColor.RED + "You have entered an invalid "),
 	playeronly(ChatColor.RED + "This command can only be run by a player."),
 	notarget(ChatColor.RED + "Please include more arguments!"),
 	manytarget(ChatColor.RED + "Too many arguments!"),

@@ -21,6 +21,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class PvPHealth extends JavaPlugin implements Listener
 {
 	public static final String
+	invalidmessage = (ChatColor.RED + "You have entered an invalid "),
 	pluginPrefix = (ChatColor.BLUE + "[" + ChatColor.GOLD + "PvP Health" + ChatColor.BLUE + "] " + ChatColor.RESET),
 	pluginPrefixNC = ("[PvP Health] ");
 
