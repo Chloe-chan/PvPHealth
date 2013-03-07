@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 public class HealthString
 {
-	private static FileConfiguration pluginConfig = Bukkit.getServer().getPluginManager().getPlugin("PvP Health").getConfig();
+	private static final FileConfiguration pluginConfig = Bukkit.getServer().getPluginManager().getPlugin("PvP Health").getConfig();
 
 	private static final boolean useNumericalDisplay()
 	{

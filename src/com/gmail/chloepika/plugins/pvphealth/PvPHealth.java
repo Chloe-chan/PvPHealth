@@ -2,6 +2,8 @@ package com.gmail.chloepika.plugins.pvphealth;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -28,6 +30,8 @@ public class PvPHealth extends JavaPlugin implements Listener
 	public void onEnable()
 	{
 		saveDefaultConfig();
+		Local.setLocale(Locale.ENGLISH);
+		Local.reloadConfig();
 		HideHealth.readHidden();
 		getServer().getPluginManager().registerEvents(this, this);
 		if (Bukkit.getServer().getPluginManager().getPlugin("Spout") != null)
