@@ -1,0 +1,7 @@
+spoutDetected: Spout detected. This plugin does not work well with Spout plugins, especially those that alter the total health.
+healthHidden: 
+healthAlreadyHidden: 
+healthShown: 
+healthAlreadyShown: 
+playerHealthHidden: 
+playerNotOnline: 

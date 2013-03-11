@@ -3,6 +3,7 @@ name: PvP Health
 version: 1.3
 author: Chloe-chan
 description: A plugin that shows player's health on attack.
+softdepend: [PowerNBT]
 
 commands:
   health:

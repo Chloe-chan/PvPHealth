@@ -25,7 +25,7 @@ public class HealthString
 	{
 		String pluginPrefix = PvPHealth.pluginPrefix;
 		String hitString = getHitString();
-		String preferredHealthString = getPreferredHealthString(victimHealth);
+		String preferredHealthString = getPreferredHealthString(victimHealth, victim);
 		String returnString = hitString;
 		{
 			returnString = ChatColor.translateAlternateColorCodes('$', returnString);
@@ -39,28 +39,35 @@ public class HealthString
 		return returnString;
 	}
 
-	public static String getPreferredHealthString(int health)
+	private static int getTotalHealth(Player player)
+	{
+		return 20;
+	}
+
+	public static String getPreferredHealthString(int health, Player victim)
 	{
 		if (useNumericalDisplay())
 		{
-			return getNumericalHealthString(health);
+			return getNumericalHealthString(health, victim);
 		} else
 		{
-			return getIconHealthString(health);
+			return getIconHealthString(health, victim);
 		}
 	}
 
-	public static String getNumericalHealthString(int health)
+	public static String getNumericalHealthString(int health, Player victim)
 	{
-		return ("[ " + health + " / 20 ]");
+		int totalHealth = getTotalHealth(victim);
+		return ("[ " + health + " / " + totalHealth + " ]");
 	}
 
-	public static String getIconHealthString(int health)
+	public static String getIconHealthString(int health, Player victim)
 	{
+		int totalHealth = getTotalHealth(victim);
 		final String filledHeartIcon = "❤";
 		final String halfHeartIcon = "♥";
 		final String emptyHeartIcon = "♡";
-		if (health > 20)
+		if (health > totalHealth)
 		{
 			return null;
 		} else
@@ -73,9 +80,9 @@ public class HealthString
 					filled = (filled + filledHeartIcon);
 				}
 				filled = (filled + halfHeartIcon);
-				if ((health + 1) < 20)
+				if ((health + 1) < totalHealth)
 				{
-					for (int emptyHealth = 0; emptyHealth < ((20 - (health + 1)) / 2); emptyHealth ++)
+					for (int emptyHealth = 0; emptyHealth < ((totalHealth - (health + 1)) / 2); emptyHealth ++)
 					{
 						filled = (filled + emptyHeartIcon);
 					}
@@ -86,9 +93,9 @@ public class HealthString
 				{
 					filled = (filled + filledHeartIcon);
 				}
-				if (health < 20)
+				if (health < totalHealth)
 				{
-					for (int emptyHealth = 0; emptyHealth < ((20 - health) / 2); emptyHealth ++)
+					for (int emptyHealth = 0; emptyHealth < ((totalHealth - health) / 2); emptyHealth ++)
 					{
 						filled = (filled + emptyHeartIcon);
 					}

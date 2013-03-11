@@ -2,7 +2,7 @@ package com.gmail.chloepika.plugins.pvphealth;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -30,13 +30,13 @@ public class PvPHealth extends JavaPlugin implements Listener
 	public void onEnable()
 	{
 		saveDefaultConfig();
-		Local.setLocale(Locale.ENGLISH);
+		Local.setLocale("en");
 		Local.reloadConfig();
 		HideHealth.readHidden();
 		getServer().getPluginManager().registerEvents(this, this);
 		if (Bukkit.getServer().getPluginManager().getPlugin("Spout") != null)
 		{
-			Bukkit.getServer().getLogger().info(pluginPrefixNC + "Spout detected. This plugin does not work well with Spout plugins, especially those that alter the total health.");
+			Bukkit.getServer().getLogger().log(Level.WARNING, (pluginPrefixNC + Local.getString(LocalMessage.SpoutDetected)));
 		}
 	}
 
@@ -113,7 +113,7 @@ public class PvPHealth extends JavaPlugin implements Listener
 								if (!HideHealth.isHidden(target))
 								{
 									int playerHealth = target.getHealth();
-									String healthString = (pluginPrefix + ChatColor.AQUA + target.getName() + ChatColor.RED + "'s health : " + ChatColor.GOLD + HealthString.getPreferredHealthString(playerHealth));
+									String healthString = (pluginPrefix + ChatColor.AQUA + target.getName() + ChatColor.RED + "'s health : " + ChatColor.GOLD + HealthString.getPreferredHealthString(playerHealth, target));
 									player.sendMessage(healthString);
 								} else
 								{
@@ -134,7 +134,7 @@ public class PvPHealth extends JavaPlugin implements Listener
 						if (target != null)
 						{
 							int playerHealth = target.getHealth();
-							String healthString = HealthString.getPreferredHealthString(playerHealth);
+							String healthString = HealthString.getPreferredHealthString(playerHealth, target);
 							sender.sendMessage(healthString);
 						} else
 						{
