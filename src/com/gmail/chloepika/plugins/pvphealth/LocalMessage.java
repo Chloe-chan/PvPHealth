@@ -1,14 +1,17 @@
 package com.gmail.chloepika.plugins.pvphealth;
 
+import org.bukkit.ChatColor;
+
 public enum LocalMessage
 {
 	SpoutDetected("spoutDetected"),
-	healthHiden("healthHidden"),
+	healthHidden("healthHidden"),
 	healthAlreadyHidden("healthAlreadyHidden"),
 	healthShown("healthShown"),
 	healthAlreadyShown("healthAlreadyShown"),
 	playerHealthHidden("playerHealthHidden"),
-	playerNotOnline("playerNotOnline");
+	playerNotOnline("playerNotOnline"),
+	noPerm("noPerm");
 
 	private String message;
 
@@ -20,5 +23,10 @@ public enum LocalMessage
 	public String getMessage()
 	{
 		return message;
+	}
+
+	public String getLocalisedMessage()
+	{
+		return ChatColor.translateAlternateColorCodes('&', Local.getString(this));
 	}
 }

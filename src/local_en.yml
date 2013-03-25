@@ -1,7 +1,8 @@
 spoutDetected: Spout detected. This plugin does not work well with Spout plugins, especially those that alter the total health.
-healthHidden: 
-healthAlreadyHidden: 
-healthShown: 
-healthAlreadyShown: 
-playerHealthHidden: 
-playerNotOnline: 
+healthHidden: &cYour health is now hidden.
+healthAlreadyHidden: &cYour health is already hidden.
+healthShown: &cYour health is now shown.
+healthAlreadyShown: &cYour health is already shown.
+playerHealthHidden: &cSorry, &b%NAME%&c have hid his/her health.
+playerNotOnline: &b%NAME%&c is not online.
+noPerm: &cSorry, I'm afraid you do not have the permission to do so.

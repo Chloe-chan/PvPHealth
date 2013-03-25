@@ -17,11 +17,10 @@ public class HealthGrabber implements Runnable
 
 	public void run()
 	{
-		int victimHealth = victim.getHealth();
-		int damageDone = (victimOriginalHealth - victimHealth);
-		if (victimHealth < 4 || damageDone > 6 || !StopSpam.havePause(attacker, victim))
+		int damageDone = (victimOriginalHealth - victim.getHealth());
+		if (victim.getHealth() < 4 || damageDone > 6 || !StopSpam.havePause(attacker, victim))
 		{
-			attacker.sendMessage(HealthString.getFinalString(attacker, victim, damageDone, victimHealth));
+			attacker.sendMessage(HealthString.getFinalString(attacker, victim, damageDone));
 			StopSpam.addToList(attacker, victim);
 		}
 	}

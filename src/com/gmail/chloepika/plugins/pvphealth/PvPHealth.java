@@ -30,13 +30,12 @@ public class PvPHealth extends JavaPlugin implements Listener
 	public void onEnable()
 	{
 		saveDefaultConfig();
-		Local.setLocale("en");
-		Local.reloadConfig();
+		Local.setLocale(Local.LocalName.en);
 		HideHealth.readHidden();
 		getServer().getPluginManager().registerEvents(this, this);
 		if (Bukkit.getServer().getPluginManager().getPlugin("Spout") != null)
 		{
-			Bukkit.getServer().getLogger().log(Level.WARNING, (pluginPrefixNC + Local.getString(LocalMessage.SpoutDetected)));
+			Bukkit.getServer().getLogger().log(Level.WARNING, (pluginPrefixNC + LocalMessage.SpoutDetected.getLocalisedMessage()));
 		}
 	}
 
@@ -72,11 +71,11 @@ public class PvPHealth extends JavaPlugin implements Listener
 							{
 								if (HideHealth.isHidden(player))
 								{
-									player.sendMessage(ChatColor.RED + "Your health is already hidden.");
+									player.sendMessage(LocalMessage.healthAlreadyHidden.getLocalisedMessage());
 								} else
 								{
 									HideHealth.hideHealth(player);
-									player.sendMessage(ChatColor.RED + "Your health is now hidden.");
+									player.sendMessage(LocalMessage.healthHidden.getLocalisedMessage());
 								}
 							}
 							if (args[0].equalsIgnoreCase("unhide"))
@@ -84,15 +83,15 @@ public class PvPHealth extends JavaPlugin implements Listener
 								if (HideHealth.isHidden(player))
 								{
 									HideHealth.unhideHealth(player);
-									player.sendMessage(ChatColor.RED + "Your health is now unhidden.");
+									player.sendMessage(LocalMessage.healthShown.getLocalisedMessage());
 								} else
 								{
-									player.sendMessage(ChatColor.RED + "Your health is already unhidden.");
+									player.sendMessage(LocalMessage.healthAlreadyShown.getLocalisedMessage());
 								}
 							}
 						} else
 						{
-							sender.sendMessage(Messages.noperm.getMessage());
+							sender.sendMessage(LocalMessage.noPerm.getLocalisedMessage());
 						}
 						return true;
 					}
@@ -117,16 +116,16 @@ public class PvPHealth extends JavaPlugin implements Listener
 									player.sendMessage(healthString);
 								} else
 								{
-									player.sendMessage(ChatColor.RED + "Sorry, " + ChatColor.AQUA + target.getName() + ChatColor.RED + " have hid his/her health.");
+									player.sendMessage(LocalMessage.playerHealthHidden.getLocalisedMessage().replaceAll("%NAME%", target.getName()));
 								}
 							} else
 							{
-								player.sendMessage(ChatColor.AQUA + args[1] + ChatColor.RED + " is not online.");
+								player.sendMessage(LocalMessage.playerNotOnline.getLocalisedMessage().replaceAll("%NAME%", args[1]));
 							}
 							return true;
 						} else
 						{
-							sender.sendMessage(Messages.noperm.getMessage());
+							sender.sendMessage(LocalMessage.noPerm.getLocalisedMessage());
 						}
 					} else
 					{
@@ -138,7 +137,7 @@ public class PvPHealth extends JavaPlugin implements Listener
 							sender.sendMessage(healthString);
 						} else
 						{
-							sender.sendMessage(ChatColor.AQUA + args[1] + ChatColor.RED + " is not online.");
+							sender.sendMessage(LocalMessage.playerNotOnline.getLocalisedMessage().replaceAll("%NAME%", args[1]));
 						}
 						return true;
 					}

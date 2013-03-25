@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 
 public class HealthString
 {
+	private static int totalHealth = 20;
+
 	private static final FileConfiguration pluginConfig = Bukkit.getServer().getPluginManager().getPlugin("PvP Health").getConfig();
 
 	private static final boolean useNumericalDisplay()
@@ -21,8 +23,14 @@ public class HealthString
 
 
 
-	public static String getFinalString(Player attacker, Player victim, int damageDone, int victimHealth)
+	public static String getFinalString(Player attacker, Player victim, int damageDone)
 	{
+		return getFinalString(attacker, victim, damageDone, true);
+	}
+
+	public static String getFinalString(Player attacker, Player victim, int damageDone, boolean addPrefix)
+	{
+		int victimHealth = victim.getHealth();
 		String pluginPrefix = PvPHealth.pluginPrefix;
 		String hitString = getHitString();
 		String preferredHealthString = getPreferredHealthString(victimHealth, victim);
@@ -34,14 +42,22 @@ public class HealthString
 			returnString = returnString.replaceAll("%VICTIM%", victim.getName());
 			returnString = returnString.replaceAll("%VICTIM-HEALTH%", preferredHealthString);
 			returnString = returnString.replaceAll("%DAMAGE-DONE%", Integer.toString(damageDone));
-			returnString = pluginPrefix + returnString;
+			if (addPrefix)
+			{
+				returnString = pluginPrefix + returnString;
+			}
 		}
 		return returnString;
 	}
 
-	private static int getTotalHealth(Player player)
+	public static int getTotalHealth()
 	{
-		return 20;
+		return totalHealth;
+	}
+
+	public static void setTotalHealth(int health)
+	{
+		totalHealth = health;
 	}
 
 	public static String getPreferredHealthString(int health, Player victim)
@@ -57,13 +73,19 @@ public class HealthString
 
 	public static String getNumericalHealthString(int health, Player victim)
 	{
-		int totalHealth = getTotalHealth(victim);
+		int totalHealth = getTotalHealth();
+		PvPHealthEvent event = new PvPHealthEvent(victim, totalHealth);
+		Bukkit.getServer().getPluginManager().callEvent(event);
+		totalHealth = event.getPlayerMaxHealth();
 		return ("[ " + health + " / " + totalHealth + " ]");
 	}
 
 	public static String getIconHealthString(int health, Player victim)
 	{
-		int totalHealth = getTotalHealth(victim);
+		int totalHealth = getTotalHealth();
+		PvPHealthEvent event = new PvPHealthEvent(victim, totalHealth);
+		Bukkit.getServer().getPluginManager().callEvent(event);
+		totalHealth = event.getPlayerMaxHealth();
 		final String filledHeartIcon = "❤";
 		final String halfHeartIcon = "♥";
 		final String emptyHeartIcon = "♡";
