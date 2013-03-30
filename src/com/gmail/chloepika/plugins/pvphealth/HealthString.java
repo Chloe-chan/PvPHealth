@@ -25,7 +25,7 @@ public class HealthString
 
 	public static String getFinalString(Player attacker, Player victim, int damageDone)
 	{
-		return getFinalString(attacker, victim, damageDone, true);
+		return getFinalString(attacker, victim, damageDone, false);
 	}
 
 	public static String getFinalString(Player attacker, Player victim, int damageDone, boolean addPrefix)
