@@ -5,6 +5,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
+import com.gmail.chloepika.plugins.pvphealth.api.PvPHealthEvent;
+
 public class HealthString
 {
 	private static int totalHealth = 20;
@@ -37,7 +39,7 @@ public class HealthString
 		String returnString = hitString;
 		{
 			returnString = ChatColor.translateAlternateColorCodes('$', returnString);
-			returnString = returnString.replaceAll("%COLON%", ":");
+			returnString = returnString.replaceAll("%QUOTE%", "'");
 			returnString = returnString.replaceAll("%ATTACKER%", attacker.getName());
 			returnString = returnString.replaceAll("%VICTIM%", victim.getName());
 			returnString = returnString.replaceAll("%VICTIM-HEALTH%", preferredHealthString);
@@ -83,9 +85,12 @@ public class HealthString
 	public static String getIconHealthString(int health, Player victim)
 	{
 		int totalHealth = getTotalHealth();
-		PvPHealthEvent event = new PvPHealthEvent(victim, totalHealth);
-		Bukkit.getServer().getPluginManager().callEvent(event);
-		totalHealth = event.getPlayerMaxHealth();
+		if (victim != null)
+		{
+			PvPHealthEvent event = new PvPHealthEvent(victim, totalHealth);
+			Bukkit.getServer().getPluginManager().callEvent(event);
+			totalHealth = event.getPlayerMaxHealth();
+		}
 		final String filledHeartIcon = "❤";
 		final String halfHeartIcon = "♥";
 		final String emptyHeartIcon = "♡";

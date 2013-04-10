@@ -20,6 +20,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.gmail.chloepika.plugins.pvphealth.Local.LocalMessage;
+
 public class PvPHealth extends JavaPlugin implements Listener
 {
 	public static final String

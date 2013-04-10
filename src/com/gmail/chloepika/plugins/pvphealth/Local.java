@@ -3,6 +3,7 @@ package com.gmail.chloepika.plugins.pvphealth;
 import java.io.InputStream;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
@@ -22,6 +23,35 @@ public class Local
 		private String getName()
 		{
 			return name;
+		}
+	}
+
+	public enum LocalMessage
+	{
+		SpoutDetected("spoutDetected"),
+		healthHidden("healthHidden"),
+		healthAlreadyHidden("healthAlreadyHidden"),
+		healthShown("healthShown"),
+		healthAlreadyShown("healthAlreadyShown"),
+		playerHealthHidden("playerHealthHidden"),
+		playerNotOnline("playerNotOnline"),
+		noPerm("noPerm");
+
+		private String message;
+
+		private LocalMessage(String message)
+		{
+			this.message = message;
+		}
+
+		public String getMessage()
+		{
+			return message;
+		}
+
+		public String getLocalisedMessage()
+		{
+			return ChatColor.translateAlternateColorCodes('$', Local.getString(this));
 		}
 	}
 

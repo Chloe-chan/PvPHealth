@@ -1,4 +1,4 @@
-package com.gmail.chloepika.plugins.pvphealth;
+package com.gmail.chloepika.plugins.pvphealth.api;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;

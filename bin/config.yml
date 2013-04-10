@@ -16,13 +16,13 @@ useNumericalDisplay: false
 #    #      ( 4.5 )       #
 #    ######################
 
-hitString: $b%VICTIM%$c's health %COLON% $6%VICTIM-HEALTH%
+hitString: '$b%VICTIM%$c%QUOTE%s health : $6%VICTIM-HEALTH%'
 # hitString: The string displayed when the PvP occurred.
 #
 #    ###################################################
 #    #                      Tools                      #
 #    ###################################################
-#    # %COLON% -> :                                    #
+#    # %QUOTE% -> '                                    #
 #    # $<colour number> - Colour                       #
 #    # %VICTIM% - The name of the victim               #
 #    # %VICTIM-HEALTH% - The health of the victim      #

@@ -64,7 +64,7 @@ public class PvPHealthAPI
 
 	/**
 	 * Gets the overall total health set to calculate.
-	 * Use {@link com.gmail.chloepika.plugins.pvphealth.PvPHealthEvent} for specific players.
+	 * Use {@link com.gmail.chloepika.plugins.pvphealth.api.PvPHealthEvent} for specific players.
 	 * 
 	 * @return Returns the total health.
 	 */
@@ -75,7 +75,7 @@ public class PvPHealthAPI
 
 	/**
 	 * Sets the overall total health set to calculate.
-	 * Use {@link com.gmail.chloepika.plugins.pvphealth.PvPHealthEvent} for specific players.
+	 * Use {@link com.gmail.chloepika.plugins.pvphealth.api.PvPHealthEvent} for specific players.
 	 * 
 	 * @param health The total health.
 	 */
