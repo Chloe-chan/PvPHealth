@@ -28,7 +28,6 @@ public class Local
 
 	public enum LocalMessage
 	{
-		SpoutDetected("spoutDetected"),
 		healthHidden("healthHidden"),
 		healthAlreadyHidden("healthAlreadyHidden"),
 		healthShown("healthShown"),

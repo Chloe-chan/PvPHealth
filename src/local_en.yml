@@ -1,4 +1,3 @@
-spoutDetected: Spout detected. This plugin does not work well with Spout plugins, especially those that alter the total health.
 healthHidden: $cYour health is now hidden.
 healthAlreadyHidden: $cYour health is already hidden.
 healthShown: $cYour health is now shown.

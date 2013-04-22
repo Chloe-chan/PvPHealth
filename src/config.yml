@@ -3,20 +3,11 @@
 #        ##################################
 
 useNumericalDisplay: false
-# useNumericalDisplay: Option to use Numerical Display between 2 types of display.
-#
-#    ######################
-#    #  Types of display  #
-#    ######################
-#    #  Numerical Display #
-#    #     [ x / 20 ]     #
-#    ######################
-#    #    Icon Display    #
-#    #   ❤❤❤❤♥♡♡♡♡♡  #
-#    #      ( 4.5 )       #
-#    ######################
 
-hitString: '$b%VICTIM%$c%QUOTE%s health : $6%VICTIM-HEALTH%'
+halfNumericalDisplay: true
+# halfNumericalDisplay: Halves the health sent, such as 4.5 hearts being 4.5/10
+
+hitString: '$9[&6PvP Health&9]&r $b%VICTIM%$c%QUOTE%s health : $6%VICTIM-HEALTH%'
 # hitString: The string displayed when the PvP occurred.
 #
 #    ###################################################
@@ -34,3 +25,6 @@ preventSpamTime: 2
 # preventSpamTime: The time in seconds before another information is sent to the attacker again.
 #
 # NOTE: Attacks higher than 6 (3 hearts) and victim's health lower than 4 (2 hearts), will bypass this time.
+
+enableHealthtag: true
+# enableHealthtag: The (buggy) feature of having health under name tags.

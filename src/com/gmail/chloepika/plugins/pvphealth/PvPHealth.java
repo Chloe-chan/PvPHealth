@@ -2,7 +2,6 @@ package com.gmail.chloepika.plugins.pvphealth;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -21,6 +20,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.gmail.chloepika.plugins.pvphealth.Local.LocalMessage;
+import com.gmail.chloepika.plugins.pvphealth.nametag.PlayerTagManager;
 
 public class PvPHealth extends JavaPlugin implements Listener
 {
@@ -34,10 +34,18 @@ public class PvPHealth extends JavaPlugin implements Listener
 		saveDefaultConfig();
 		Local.setLocale(Local.LocalName.en);
 		HideHealth.readHidden();
-		getServer().getPluginManager().registerEvents(this, this);
-		if (Bukkit.getServer().getPluginManager().getPlugin("Spout") != null)
+		Bukkit.getServer().getPluginManager().registerEvents(this, this);
+		if (getConfig().getBoolean("enableHealthtag", false))
 		{
-			Bukkit.getServer().getLogger().log(Level.WARNING, (pluginPrefixNC + LocalMessage.SpoutDetected.getLocalisedMessage()));
+			PlayerTagManager.registerScoreboard();
+			Bukkit.getServer().getPluginManager().registerEvents(new PlayerTagManager(), this);
+			for(Player p : Bukkit.getServer().getOnlinePlayers())
+			{
+				if (!HideHealth.isHidden(p))
+				{
+					PlayerTagManager.addScore(p);
+				}
+			}
 		}
 	}
 
@@ -77,6 +85,7 @@ public class PvPHealth extends JavaPlugin implements Listener
 								} else
 								{
 									HideHealth.hideHealth(player);
+									PlayerTagManager.resetScore(player);
 									player.sendMessage(LocalMessage.healthHidden.getLocalisedMessage());
 								}
 							}
@@ -85,6 +94,7 @@ public class PvPHealth extends JavaPlugin implements Listener
 								if (HideHealth.isHidden(player))
 								{
 									HideHealth.unhideHealth(player);
+									PlayerTagManager.addScore(player);
 									player.sendMessage(LocalMessage.healthShown.getLocalisedMessage());
 								} else
 								{

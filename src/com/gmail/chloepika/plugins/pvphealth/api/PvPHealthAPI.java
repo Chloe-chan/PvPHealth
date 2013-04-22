@@ -9,6 +9,8 @@ import com.gmail.chloepika.plugins.pvphealth.Local;
 
 public class PvPHealthAPI
 {
+	public static final String VERSION = "1.3.3";
+	
 	/**
 	 * Sets custom locale file to be used.
 	 * 
@@ -19,19 +21,34 @@ public class PvPHealthAPI
 		Local.registerCustomLocale(is);
 	}
 
-	public static String getFilledHeart()
+	public static char getFilledHeart()
 	{
-		return "❤";
+		return HealthString.filledHeartIcon;
 	}
 
-	public static String getHalfHeart()
+	public static void setFilledHeart(char filledHeartIcon)
 	{
-		return "♥";
+		HealthString.filledHeartIcon = filledHeartIcon;
 	}
 
-	public static String getEmptyHeart()
+	public static char getHalfHeart()
 	{
-		return "♡";
+		return HealthString.halfHeartIcon;
+	}
+
+	public static void setHalfHeart(char halfHeartIcon)
+	{
+		HealthString.halfHeartIcon = halfHeartIcon;
+	}
+
+	public static char getEmptyHeart()
+	{
+		return HealthString.emptyHeartIcon;
+	}
+
+	public static void setEmptyHeart(char emptyHeartIcon)
+	{
+		HealthString.emptyHeartIcon = emptyHeartIcon;
 	}
 
 	/**
@@ -59,28 +76,6 @@ public class PvPHealthAPI
 	 */
 	public static String getFinalisedString(Player attacker, Player victim, int damageDone)
 	{
-		return HealthString.getFinalString(attacker, victim, damageDone, false);
-	}
-
-	/**
-	 * Gets the overall total health set to calculate.
-	 * Use {@link com.gmail.chloepika.plugins.pvphealth.api.PvPHealthEvent} for specific players.
-	 * 
-	 * @return Returns the total health.
-	 */
-	public static int getTotalHealth()
-	{
-		return HealthString.getTotalHealth();
-	}
-
-	/**
-	 * Sets the overall total health set to calculate.
-	 * Use {@link com.gmail.chloepika.plugins.pvphealth.api.PvPHealthEvent} for specific players.
-	 * 
-	 * @param health The total health.
-	 */
-	public static void setTotalHealth(int health)
-	{
-		HealthString.setTotalHealth(health);
+		return HealthString.getFinalString(attacker, victim, damageDone);
 	}
 }
