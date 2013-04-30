@@ -7,7 +7,7 @@ useNumericalDisplay: false
 halfNumericalDisplay: true
 # halfNumericalDisplay: Halves the health sent, such as 4.5 hearts being 4.5/10
 
-hitString: '$9[&6PvP Health&9]&r $b%VICTIM%$c%QUOTE%s health : $6%VICTIM-HEALTH%'
+hitString: '$9[$6PvP Health$9]$r $b%VICTIM%$c%QUOTE%s health : $6%VICTIM-HEALTH%'
 # hitString: The string displayed when the PvP occurred.
 #
 #    ###################################################

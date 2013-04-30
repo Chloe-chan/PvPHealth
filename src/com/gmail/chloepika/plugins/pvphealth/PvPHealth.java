@@ -106,7 +106,15 @@ public class PvPHealth extends JavaPlugin implements Listener
 							sender.sendMessage(LocalMessage.noPerm.getLocalisedMessage());
 						}
 						return true;
+					} else
+					{
+						sender.sendMessage(Messages.playeronly.getMessage());
+						return true;
 					}
+				}
+				{
+					sender.sendMessage(error(Messages.invalidtarget, "/health help"));
+					return true;
 				}
 			}
 			if (args.length == 2)
@@ -153,6 +161,10 @@ public class PvPHealth extends JavaPlugin implements Listener
 						}
 						return true;
 					}
+				}
+				{
+					sender.sendMessage(error(Messages.invalidtarget, "/health help"));
+					return true;
 				}
 			}
 			if (args.length > 2)

@@ -21,4 +21,9 @@ public enum Messages
 	{
 		return message;
 	}
+	
+	public String toString()
+	{
+		return getMessage();
+	}
 }

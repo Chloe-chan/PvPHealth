@@ -20,8 +20,11 @@ public class HealthGrabber implements Runnable
 		int damageDone = (victimOriginalHealth - victim.getHealth());
 		if (victim.getHealth() < 4 || damageDone > 6 || !StopSpam.havePause(attacker, victim))
 		{
-			attacker.sendMessage(HealthString.getFinalString(attacker, victim, damageDone));
-			StopSpam.addToList(attacker, victim);
+			if (attacker.hasPermission("pvphealth.attack"))
+			{
+				attacker.sendMessage(HealthString.getFinalString(attacker, victim, damageDone));
+				StopSpam.addToList(attacker, victim);
+			}
 		}
 	}
 }

@@ -6,11 +6,12 @@ import org.bukkit.entity.Player;
 
 import com.gmail.chloepika.plugins.pvphealth.HealthString;
 import com.gmail.chloepika.plugins.pvphealth.Local;
+import com.gmail.chloepika.plugins.pvphealth.nametag.PlayerTagManager;
 
 public class PvPHealthAPI
 {
-	public static final String VERSION = "1.3.3";
-	
+	public static final String VERSION = "1.3.4";
+
 	/**
 	 * Sets custom locale file to be used.
 	 * 
@@ -77,5 +78,15 @@ public class PvPHealthAPI
 	public static String getFinalisedString(Player attacker, Player victim, int damageDone)
 	{
 		return HealthString.getFinalString(attacker, victim, damageDone);
+	}
+
+	/**
+	 * Updates the health under name tag.
+	 * 
+	 * @param player Player to update health.
+	 */
+	public static void updateHealthtag(Player player)
+	{
+		PlayerTagManager.updateHealth(player);
 	}
 }
