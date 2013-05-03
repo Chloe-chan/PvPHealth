@@ -18,8 +18,8 @@ import com.gmail.chloepika.plugins.pvphealth.HideHealth;
 
 public class PlayerTagManager implements Listener
 {
-	public static Scoreboard healthScoreboard;
-	public static Objective healthObjective;
+	private static Scoreboard healthScoreboard;
+	private static Objective healthObjective;
 
 	public static void registerScoreboard()
 	{
@@ -43,6 +43,7 @@ public class PlayerTagManager implements Listener
 		if (!HideHealth.isHidden(event.getPlayer()))
 		{
 			event.getPlayer().setScoreboard(healthScoreboard);
+			updateHealth(event.getPlayer());
 		}
 	}
 

@@ -35,7 +35,7 @@ public class PvPHealth extends JavaPlugin implements Listener
 		Local.setLocale(Local.LocalName.en);
 		HideHealth.readHidden();
 		Bukkit.getServer().getPluginManager().registerEvents(this, this);
-		if (getConfig().getBoolean("enableHealthtag", false))
+		if (getConfig().getBoolean("enableHealthtag", true))
 		{
 			PlayerTagManager.registerScoreboard();
 			Bukkit.getServer().getPluginManager().registerEvents(new PlayerTagManager(), this);
@@ -44,6 +44,7 @@ public class PvPHealth extends JavaPlugin implements Listener
 				if (!HideHealth.isHidden(p))
 				{
 					PlayerTagManager.addScore(p);
+					PlayerTagManager.updateHealth(p);
 				}
 			}
 		}
@@ -70,7 +71,7 @@ public class PvPHealth extends JavaPlugin implements Listener
 					sender.sendMessage(help(sender));
 					return true;
 				}
-				if (args[0].equalsIgnoreCase("hide") || args[0].equalsIgnoreCase("unhide"))
+				if (args[0].equalsIgnoreCase("hide") || args[0].equalsIgnoreCase("unhide") || args[0].equalsIgnoreCase("show"))
 				{
 					if (sender instanceof Player)
 					{
@@ -89,7 +90,7 @@ public class PvPHealth extends JavaPlugin implements Listener
 									player.sendMessage(LocalMessage.healthHidden.getLocalisedMessage());
 								}
 							}
-							if (args[0].equalsIgnoreCase("unhide"))
+							if (args[0].equalsIgnoreCase("unhide") || args[0].equalsIgnoreCase("show"))
 							{
 								if (HideHealth.isHidden(player))
 								{
@@ -119,7 +120,7 @@ public class PvPHealth extends JavaPlugin implements Listener
 			}
 			if (args.length == 2)
 			{
-				if (args[0].equalsIgnoreCase("get"))
+				if (args[0].equalsIgnoreCase("get") || args[0].equalsIgnoreCase("g"))
 				{
 					if (sender instanceof Player)
 					{
@@ -178,7 +179,10 @@ public class PvPHealth extends JavaPlugin implements Listener
 
 	public void callScheduler(Player attacker, Player victim)
 	{
-		callScheduler(this, attacker, victim);
+		if (getConfig().getBoolean("enableChatMessage"))
+		{
+			callScheduler(this, attacker, victim);
+		}
 	}
 
 	public static void callScheduler(Plugin plugin, Player attacker, Player victim)
@@ -218,7 +222,10 @@ public class PvPHealth extends JavaPlugin implements Listener
 						if (owner instanceof Player)
 						{
 							Player attacker = (Player) owner;
-							callScheduler(attacker, victim);
+							if (attacker != null)
+							{
+								callScheduler(attacker, victim);
+							}
 						}
 					}
 				}

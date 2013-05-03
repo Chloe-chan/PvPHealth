@@ -2,10 +2,17 @@
 #        ## Configuration for PvP Health ##
 #        ##################################
 
+enableHealthtag: true
+# enableHealthtag: The feature of having health under name tags.
+
+enableChatMessage: true
+# enableChatMessage: The original feature of sending health through text.
+
 useNumericalDisplay: false
+# useNumericalDisplay: Option to use numerical health instead of icons.
 
 halfNumericalDisplay: true
-# halfNumericalDisplay: Halves the health sent, such as 4.5 hearts being 4.5/10
+# halfNumericalDisplay: Halves the health sent, such as 4.5 hearts being 4.5/10.0
 
 hitString: '$9[$6PvP Health$9]$r $b%VICTIM%$c%QUOTE%s health : $6%VICTIM-HEALTH%'
 # hitString: The string displayed when the PvP occurred.
@@ -25,6 +32,3 @@ preventSpamTime: 2
 # preventSpamTime: The time in seconds before another information is sent to the attacker again.
 #
 # NOTE: Attacks higher than 6 (3 hearts) and victim's health lower than 4 (2 hearts), will bypass this time.
-
-enableHealthtag: true
-# enableHealthtag: The (buggy) feature of having health under name tags.
